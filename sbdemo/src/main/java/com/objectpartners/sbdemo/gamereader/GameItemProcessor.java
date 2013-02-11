@@ -1,7 +1,11 @@
 package com.objectpartners.sbdemo.gamereader;
 
-import com.objectpartners.sbdemo.GameItem;
+import com.objectpartners.sbdemo.item.GameItem;
+import com.objectpartners.sbdemo.persistant.PersistentGame;
+import com.objectpartners.sbdemo.persistant.Team;
 import org.springframework.batch.item.ItemProcessor;
+
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,9 +14,20 @@ import org.springframework.batch.item.ItemProcessor;
  * Time: 9:24 PM
  * To change this template use File | Settings | File Templates.
  */
-public class GameItemProcessor<GameItem> implements ItemProcessor<GameItem, GameItem>{
+public class GameItemProcessor implements ItemProcessor<GameItem, PersistentGame>{
     @Override
-    public GameItem process(GameItem gameItem) throws Exception {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public PersistentGame process(GameItem gameItem) throws Exception {
+        System.out.println("Processing a game!");
+
+        PersistentGame game = new PersistentGame();
+
+        Team home = new Team();
+        home.setName("Iowa");
+        home.setNickName("Hawekeyes");
+
+        game.setDate(new Date());
+        game.setHome(home);
+
+        return game;
     }
 }

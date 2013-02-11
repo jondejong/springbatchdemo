@@ -1,10 +1,10 @@
-package com.objectpartners.sbdemo;
+package com.objectpartners.sbdemo.item;
 
 /**
  * Created with IntelliJ IDEA.
  * User: jondejong
- * Date: 2/6/13
- * Time: 9:21 PM
+ * Date: 2/11/13
+ * Time: 4:53 PM
  * To change this template use File | Settings | File Templates.
  */
 public class GameItem {

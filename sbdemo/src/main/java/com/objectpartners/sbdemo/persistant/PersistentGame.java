@@ -9,7 +9,8 @@ import java.util.Date;
  * Time: 9:36 PM
  * To change this template use File | Settings | File Templates.
  */
-public class PersistantGame {
+public class PersistentGame {
+
     private Date date;
     private Team visitors;
     private Team home;
