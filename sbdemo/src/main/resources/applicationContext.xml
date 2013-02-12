@@ -3,11 +3,17 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <import resource="hibernate.xml" />
-    <import resource="sbdemoJob.xml" />
+    <import resource="hibernate.xml"/>
+    <import resource="sbdemoJob.xml"/>
 
     <bean id="gameService" class="com.objectpartners.sbdemo.service.GameServiceImpl">
 
+    </bean>
+
+    <bean id="gameItemReader" class="com.objectpartners.sbdemo.gamereader.GameItemReader "/>
+    <bean id="gameItemProcessor" class="com.objectpartners.sbdemo.gamereader.GameItemProcessor"/>
+    <bean id="gameWriter" class="com.objectpartners.sbdemo.gamereader.GameWriter">
+        <property name="gameService" ref="gameService"/>
     </bean>
 
 </beans>

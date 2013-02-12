@@ -16,13 +16,20 @@ import java.util.List;
  */
 public class GameWriter implements ItemWriter<PersistentGame> {
 
-    @Autowired
     private GameService gameService;
 
     @Override
     public void write(List<? extends PersistentGame> persistentGames) throws Exception {
+
+        System.out.println("Writing " + persistentGames.size() + " games.");
+
         for(PersistentGame game : persistentGames) {
             gameService.saveGame(game);
         }
+    }
+
+    @Autowired
+    public void setGameService(GameService gameService) {
+        this.gameService = gameService;
     }
 }

@@ -13,12 +13,17 @@ import org.springframework.batch.item.UnexpectedInputException;
  * Time: 4:51 PM
  * To change this template use File | Settings | File Templates.
  */
-public class GameItemReader implements ItemReader<GameItem>{
+public class GameItemReader implements ItemReader<GameItem> {
+
+    private static int count = 0;
 
     @Override
     public GameItem read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
 
         System.out.println("Reading in a game... booya!");
+        if(++count >= 100) {
+            return null;
+        }
         return new GameItem();
     }
 }

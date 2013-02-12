@@ -18,6 +18,7 @@ public class Team {
     @Id
     @GeneratedValue(generator="increment")
     @GenericGenerator(name="increment", strategy = "increment")
+    @Column(name = "id")
     private Long id;
 
     @Column(name="name")
