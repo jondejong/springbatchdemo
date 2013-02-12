@@ -149,91 +149,20 @@
             </p>
         </section>
         <section>
-            <section>
-                <h2>Features</h2>
-            </section>
-            <section>
-                <h2>Features</h2>
-                <div>
-                    <br>
-                </div>
-                <div style="text-align: left;">
-                    <ul>
-                        <li>Use of entire Spring Batch XSD</li>
-                    </ul>
-                </div>
-            </section>
-            <section>
-                <h2>Features</h2>
-                <div>
-                    <br>
-                </div>
-                <div style="text-align: left;">
-                    <ul>
-                        <li>Use of entire Spring Batch XSD</li>
-                        <li>Defined jobs using Groovy DSL</li>
-                    </ul>
-                </div>
-            </section>
-            <section>
-                <h2>Features</h2>
-                <div>
-                    <br>
-                </div>
-                <div style="text-align: left;">
-                    <ul>
-                        <li>Use of entire Spring Batch XSD</li>
-                        <li>Defined jobs using Groovy DSL</li>
-                        <li>Job configuration reloading</li>
-                    </ul>
-                </div>
-
-            </section>
-            <section>
-                <h2>Features</h2>
-                <div>
-                    <br>
-                </div>
-                <div style="text-align: left;">
-                    <ul>
-                        <li>Use of entire Spring Batch XSD</li>
-                        <li>Defined jobs using Groovy DSL</li>
-                        <li>Job configuration reloading</li>
-                        <li>Remote access through JMX</li>
-                    </ul>
-                </div>
-            </section>
-            <section>
-                <h2>Features</h2>
-                <div>
-                    <br>
-                </div>
-                <div style="text-align: left;">
-                    <ul>
-                        <li>Use of entire Spring Batch XSD</li>
-                        <li>Defined jobs using Groovy DSL</li>
-                        <li>Job configuration reloading</li>
-                        <li>Remote access through JMX</li>
-                        <li>Auto create Spring Batch tables</li>
-                    </ul>
-                </div>
-            </section>
-            <section>
-                <h2>Features</h2>
-                <div>
-                    <br>
-                </div>
-                <div style="text-align: left;">
-                    <ul>
-                        <li>Use of entire Spring Batch XSD</li>
-                        <li>Defined jobs using Groovy DSL</li>
-                        <li>Job configuration reloading</li>
-                        <li>Remote access through JMX</li>
-                        <li>Auto create Spring Batch tables</li>
-                        <li>Basic, extensible UI for job management</li>
-                    </ul>
-                </div>
-            </section>
+            <h2>Features</h2>
+            <div>
+                <br>
+            </div>
+            <div style="text-align: left;">
+                <ul>
+                    <li class="fragment">Use of entire Spring Batch XSD</li>
+                    <li class="fragment">Defined jobs using Groovy DSL</li>
+                    <li class="fragment">Job configuration reloading</li>
+                    <li class="fragment">Remote access through JMX</li>
+                    <li class="fragment">Auto create Spring Batch tables</li>
+                    <li class="fragment">Basic, extensible UI for job management</li>
+                </ul>
+            </div>
         </section>
         <section>
             <section>
@@ -246,7 +175,9 @@
                     <div>
                         <br>
                     </div>
-                    <pre>grails-app/batch/SimpleJob<font color="#cc0000">BatchConfig</font>.groovy</pre>
+                    <pre><code class="java">
+grails-app/batch/SimpleJob<font color="#cc0000">BatchConfig</font>.groovy
+                    </code></pre>
                     <br>
                 </div>
             </section>
@@ -261,9 +192,12 @@
                     <div>
                         <br>
                     </div>
-                    <pre>grails-app/batch/SimpleJobBatchConfig.groovy</pre>
-                    <pre><font color="#cc0000">beans</font> {</pre>
-                    <pre>}</pre>
+                    <pre><code class="java">
+grails-app/batch/SimpleJobBatchConfig.groovy
+
+<font color="#cc0000">beans</font> {
+}
+                    </code></pre>
                     <br>
                 </div>
             </section>
@@ -276,10 +210,12 @@
                     <div>
                         <br>
                     </div>
-                    <pre>grails-app/batch/SimpleJobBatchConfig.groovy</pre>
-                    <pre>beans {</pre>
-                    <pre>    <font color="#cc0000">xmlns batch:'http://www.springframework.org/schema/batch'</font></pre>
-                    <pre>}</pre>
+                    <pre><code class="java">
+grails-app/batch/SimpleJobBatchConfig.groovy
+
+beans {
+    <font color="#cc0000">xmlns batch:'http://www.springframework.org/schema/batch'</font>
+}                   </code></pre>
                     <br>
                 </div>
 
@@ -293,15 +229,18 @@
                     <div>
                         <br>
                     </div>
-                    <pre>grails-app/batch/SimpleJobBatchConfig.groovy</pre>
-                    <pre>beans {</pre>
-                    <pre>    xmlns <font color="#cc0000">batch</font>:'http://www.springframework.org/schema/batch'</pre>
-                    <pre>    <font color="#cc0000">batch</font>.job(id: 'simpleJob') {</pre>
-                    <pre>        <font color="#cc0000">batch</font>.step(id: 'logStart') {</pre>
-                    <pre>            ...</pre>
-                    <pre>        }</pre>
-                    <pre>    }</pre>
-                    <pre>}</pre>
+                    <pre><code class="java">
+grails-app/batch/SimpleJobBatchConfig.groovy
+
+beans {
+    xmlns <font color="#cc0000">batch</font>:'http://www.springframework.org/schema/batch'
+
+    <font color="#cc0000">batch</font>.job(id: 'simpleJob') {
+        <font color="#cc0000">batch</font>.step(id: 'logStart') {
+            ...
+        }
+    }
+}                   </code></pre>
                     <br>
                 </div>
 
@@ -315,18 +254,23 @@
                     <div>
                         <br>
                     </div>
-                    <pre>grails-app/batch/SimpleJobBatchConfig.groovy</pre>
-                    <pre>beans {</pre>
-                    <pre>    xmlns batch:'http://www.springframework.org/schema/batch'</pre>
-                    <pre>    batch.job(id: 'simpleJob') {</pre>
-                    <pre>        batch.step(id: 'logStart') {</pre>
-                    <pre>            batch.tasklet(<font color="#cc0000">ref: 'logStart'</font>)</pre>
-                    <pre>        }</pre>
-                    <pre>    }</pre>
-                    <pre>    <font color="#cc0000">logStart</font>(PrintStartMessageTasklet) { bean -&gt;</pre>
-                    <pre>        bean.autowire = 'byName'</pre>
-                    <pre>    }</pre>
-                    <pre>}</pre>
+                    <pre><code class="java">
+grails-app/batch/SimpleJobBatchConfig.groovy
+
+beans {
+    xmlns batch:'http://www.springframework.org/schema/batch'
+
+    batch.job(id: 'simpleJob') {
+        batch.step(id: 'logStart') {
+            batch.tasklet(<font color="#cc0000">ref: 'logStart'</font>)
+        }
+    }
+
+    <font color="#cc0000">logStart</font>(PrintStartMessageTasklet) { bean -&gt;
+        bean.autowire = 'byName'
+    }
+}
+                    </code></pre>
                     <br>
                 </div>
             </section>
