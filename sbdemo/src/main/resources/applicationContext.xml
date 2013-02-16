@@ -7,9 +7,7 @@
     <import resource="batchContext.xml"/>
 
     <bean id="gameService" class="com.objectpartners.sbdemo.service.GameServiceImpl">
-
     </bean>
-
 
     <bean id="teamService" class="com.objectpartners.sbdemo.service.TeamServiceImpl">
         <property name="teamDao" ref="teamDao" />

@@ -10,23 +10,37 @@
 
     <import resource="applicationContext.xml"/>
 
-    <job id="teamJob" restartable="false" xmlns="http://www.springframework.org/schema/batch">
+    <job id="gameJob" restartable="false" xmlns="http://www.springframework.org/schema/batch">
         <step id="gameStep1">
             <tasklet>
-                <chunk reader="gameItemReader" writer="gameWriter" commit-interval="5"/>
+                <chunk reader="gameItemReader" processor="gameItemProcessor" writer="gameWriter" commit-interval="5"/>
             </tasklet>
         </step>
 
     </job>
 
+
+    <!-- define the reader -->
     <bean id="gameItemReader" class="org.springframework.batch.item.file.FlatFileItemReader">
+        <property name="resource" ref="gameResource" />
         <property name="lineMapper" ref="gameLineMapper"/>
     </bean>
 
-    <bean id="gameLineMapper" class="com.objectpartners.sbdemo.gamejob.GameLineMapper">
+    <bean id="gameLineMapper" class="com.objectpartners.sbdemo.gamejob.GameLineMapper" />
+
+    <bean id="gameResource" class="org.springframework.core.io.FileSystemResource">
+        <constructor-arg value="/Users/jondejong/projects/springbatchdemo/sbdemo/data/games.csv" />
+    </bean>
+
+    <!-- define the processor -->
+    <bean id="gameItemProcessor" class="com.objectpartners.sbdemo.gamejob.GameItemProcessor">
+
 
     </bean>
 
+
+
+    <!-- define the writer -->
     <bean id="gameWriter" class="com.objectpartners.sbdemo.gamejob.GameWriter"/>
 
 </beans>

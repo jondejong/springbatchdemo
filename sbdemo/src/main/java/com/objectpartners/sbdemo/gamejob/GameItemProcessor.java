@@ -13,7 +13,7 @@ import java.util.Date;
 public class GameItemProcessor implements ItemProcessor<GameItem, Game>{
     @Override
     public Game process(GameItem gameItem) throws Exception {
-        System.out.println("Processing a game!");
+        System.out.println("Processing a game: " + gameItem.toString());
 
         Game game = new Game();
 

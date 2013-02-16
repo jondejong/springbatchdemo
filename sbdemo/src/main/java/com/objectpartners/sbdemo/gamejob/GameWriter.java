@@ -12,5 +12,7 @@ public class GameWriter implements ItemWriter<Game> {
     @Override
     public void write(List<? extends Game> games) throws Exception {
 
+
+
     }
 }

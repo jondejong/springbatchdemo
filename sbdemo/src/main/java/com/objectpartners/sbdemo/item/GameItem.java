@@ -1,5 +1,7 @@
 package com.objectpartners.sbdemo.item;
 
+import java.util.Date;
+
 /**
  * Created with IntelliJ IDEA.
  * User: jondejong
@@ -8,49 +10,84 @@ package com.objectpartners.sbdemo.item;
  * To change this template use File | Settings | File Templates.
  */
 public class GameItem {
-    private String date;
-    private String visitingTeam;
-    private String homeTeam;
-    private String visitingTeamScore;
-    private String homeTeamScore;
+    private Date date;
+    private String visitingTeamName;
+    private String visitingTeamNickName;
+    private String homeTeamName;
+    private String homeTeamNickeName;
+    private Integer visitingTeamScore;
+    private Integer homeTeamScore;
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
-    public String getVisitingTeam() {
-        return visitingTeam;
+    public String getVisitingTeamName() {
+        return visitingTeamName;
     }
 
-    public void setVisitingTeam(String visitingTeam) {
-        this.visitingTeam = visitingTeam;
+    public void setVisitingTeamName(String visitingTeamName) {
+        this.visitingTeamName = visitingTeamName;
     }
 
-    public String getHomeTeam() {
-        return homeTeam;
+    public String getVisitingTeamNickName() {
+        return visitingTeamNickName;
     }
 
-    public void setHomeTeam(String homeTeam) {
-        this.homeTeam = homeTeam;
+    public void setVisitingTeamNickName(String visitingTeamNickName) {
+        this.visitingTeamNickName = visitingTeamNickName;
     }
 
-    public String getVisitingTeamScore() {
+    public String getHomeTeamName() {
+        return homeTeamName;
+    }
+
+    public void setHomeTeamName(String homeTeamName) {
+        this.homeTeamName = homeTeamName;
+    }
+
+    public String getHomeTeamNickeName() {
+        return homeTeamNickeName;
+    }
+
+    public void setHomeTeamNickeName(String homeTeamNickeName) {
+        this.homeTeamNickeName = homeTeamNickeName;
+    }
+
+    public Integer getVisitingTeamScore() {
         return visitingTeamScore;
     }
 
-    public void setVisitingTeamScore(String visitingTeamScore) {
+    public void setVisitingTeamScore(Integer visitingTeamScore) {
         this.visitingTeamScore = visitingTeamScore;
     }
 
-    public String getHomeTeamScore() {
+    public Integer getHomeTeamScore() {
         return homeTeamScore;
     }
 
-    public void setHomeTeamScore(String homeTeamScore) {
+    public void setHomeTeamScore(Integer homeTeamScore) {
         this.homeTeamScore = homeTeamScore;
+    }
+
+    @Override
+    public String toString() {
+
+        if(null == homeTeamName) {
+            return "GameItem not initialized.";
+        }
+
+        String winningTeam = homeTeamScore > visitingTeamScore ? homeTeamName + " " + homeTeamNickeName : visitingTeamName + " " + visitingTeamNickName;
+        String losingTeam =  homeTeamScore > visitingTeamScore ? visitingTeamName + " " + visitingTeamNickName : homeTeamName + " " + homeTeamNickeName;
+        Integer winningScore = homeTeamScore > visitingTeamScore ? homeTeamScore : visitingTeamScore;
+        Integer losingScore = homeTeamScore > visitingTeamScore ? visitingTeamScore : homeTeamScore;
+
+        String location = homeTeamScore > visitingTeamScore ? "at home" : "away from home";
+
+        return "The " + winningTeam + " defeated the " + losingTeam + " " + winningScore + " to " + losingScore + " " + location + ".";
     }
 }
