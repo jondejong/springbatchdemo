@@ -3,13 +3,9 @@ package com.objectpartners.sbdemo.persistant;
 import java.util.Date;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jondejong
- * Date: 2/6/13
- * Time: 9:36 PM
- * To change this template use File | Settings | File Templates.
+ * Game Entity object
  */
-public class PersistentGame {
+public class Game {
 
     private Date date;
     private Team visitors;

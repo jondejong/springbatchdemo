@@ -8,26 +8,25 @@
        	http://www.springframework.org/schema/aop
  		http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <import resource="applicationContext.xml" />
+    <import resource="applicationContext.xml"/>
 
     <job id="teamJob" restartable="false" xmlns="http://www.springframework.org/schema/batch">
-        <step id="teamStep1">
+        <step id="gameStep1">
             <tasklet>
-                <chunk reader="teamItemReader" writer="teamWriter" commit-interval="5"/>
+                <chunk reader="gameItemReader" writer="gameWriter" commit-interval="5"/>
             </tasklet>
         </step>
 
     </job>
 
-    <bean id="teamItemReader" class="com.objectpartners.sbdemo.teamjob.TeamReader">
-        <constructor-arg value="/Users/jondejong/projects/springbatchdemo/sbdemo/data/teams.csv" />
+    <bean id="gameItemReader" class="org.springframework.batch.item.file.FlatFileItemReader">
+        <property name="lineMapper" ref="gameLineMapper"/>
     </bean>
 
-    <bean id="gameItemProcessor" class="com.objectpartners.sbdemo.gamejob.GameItemProcessor"/>
+    <bean id="gameLineMapper" class="com.objectpartners.sbdemo.gamejob.GameLineMapper">
 
-    <bean id="teamWriter" class="com.objectpartners.sbdemo.teamjob.TeamWriter">
-        <property name="teamService" ref="teamService"/>
     </bean>
 
+    <bean id="gameWriter" class="com.objectpartners.sbdemo.gamejob.GameWriter"/>
 
 </beans>

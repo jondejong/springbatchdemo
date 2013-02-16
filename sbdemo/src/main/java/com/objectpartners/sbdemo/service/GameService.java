@@ -1,6 +1,6 @@
 package com.objectpartners.sbdemo.service;
 
-import com.objectpartners.sbdemo.persistant.PersistentGame;
+import com.objectpartners.sbdemo.persistant.Game;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,7 +12,7 @@ import com.objectpartners.sbdemo.persistant.PersistentGame;
 public interface GameService {
 
 
-    public void saveGame(PersistentGame game);
+    public void saveGame(Game game);
 
     public void findTeamByName(String name, String nickName);
 

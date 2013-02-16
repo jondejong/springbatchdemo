@@ -1,6 +1,6 @@
 package com.objectpartners.sbdemo.service;
 
-import com.objectpartners.sbdemo.persistant.PersistentGame;
+import com.objectpartners.sbdemo.persistant.Game;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,7 +11,7 @@ import com.objectpartners.sbdemo.persistant.PersistentGame;
  */
 public class GameServiceImpl implements GameService {
     @Override
-    public void saveGame(PersistentGame game) {
+    public void saveGame(Game game) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 

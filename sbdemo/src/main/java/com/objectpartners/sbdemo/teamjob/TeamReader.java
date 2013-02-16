@@ -1,4 +1,4 @@
-package com.objectpartners.sbdemo.gamereader;
+package com.objectpartners.sbdemo.teamjob;
 
 import com.objectpartners.sbdemo.item.GameItem;
 import com.objectpartners.sbdemo.persistant.Team;
@@ -24,7 +24,7 @@ public class TeamReader implements ItemReader<Team> {
             FileReader fileReader = new FileReader(fileName);
             reader = new BufferedReader(fileReader);
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
 
 

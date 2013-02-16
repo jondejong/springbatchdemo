@@ -4,15 +4,16 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <import resource="hibernate.xml"/>
-    <import resource="teamJob.xml"/>
+    <import resource="batchContext.xml"/>
 
     <bean id="gameService" class="com.objectpartners.sbdemo.service.GameServiceImpl">
 
     </bean>
 
 
-    <bean id="teamDao" class="com.objectpartners.sbdemo.dao.TeamDaoImpl">
-        <!--<property name="entityManager" ref="en"-->
+    <bean id="teamService" class="com.objectpartners.sbdemo.service.TeamServiceImpl">
+        <property name="teamDao" ref="teamDao" />
     </bean>
 
+    <bean id="teamDao" class="com.objectpartners.sbdemo.dao.TeamDaoImpl" />
 </beans>
