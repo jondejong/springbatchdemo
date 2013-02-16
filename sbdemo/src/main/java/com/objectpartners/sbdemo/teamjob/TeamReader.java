@@ -26,8 +26,6 @@ public class TeamReader implements ItemReader<Team> {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
     @Override
@@ -45,6 +43,11 @@ public class TeamReader implements ItemReader<Team> {
 
         Team team = new Team();
         String[] tokens = line.split(",");
+
+        if(tokens.length != 2) {
+            return null;
+        }
+
         team.setName(tokens[0]);
         team.setNickName(tokens[1]);
 
