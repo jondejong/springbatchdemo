@@ -51,6 +51,10 @@ public class TeamReader implements ItemReader<Team> {
         team.setName(tokens[0]);
         team.setNickName(tokens[1]);
 
+        team.setLosses(0);
+        team.setWins(0);
+        team.setWinPercentage(0.0);
+
         return team;
     }
 

@@ -45,6 +45,11 @@ public class TeamDaoImpl implements TeamDao {
 
     }
 
+    @Override
+    public List<Team> findAll() {
+        return entityManager.createQuery("select t from Team t").getResultList();
+    }
+
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
     }

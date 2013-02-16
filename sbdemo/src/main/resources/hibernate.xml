@@ -16,8 +16,14 @@
         <property name="maxActive" value="5"/>
     </bean>
 
-    <!--<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">-->
-        <!--<property name="dataSource" ref="dataSource" />-->
+    <!-- Session Factory for direct Hibernate access -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="packagesToScan">
+            <list>
+                <value>com.objectpartners.sbdemo.persistant</value>
+            </list>
+        </property>
         <!--<property name="hibernateProperties">-->
             <!--<value>-->
                 <!--<![CDATA[-->
@@ -26,11 +32,12 @@
 			<!--]]>-->
             <!--</value>-->
         <!--</property>-->
-    <!--</bean>-->
+    </bean>
 
+    <!-- Entity Manager for JPA Access -->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="persistenceUnitName" value="jpaTest" />
+        <property name="persistenceUnitName" value="sbdemo" />
         <property name="packagesToScan">
             <list>
                 <value>com.objectpartners.sbdemo.persistant</value>

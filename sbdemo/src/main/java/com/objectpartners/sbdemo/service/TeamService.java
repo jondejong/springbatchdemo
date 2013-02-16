@@ -1,8 +1,8 @@
 package com.objectpartners.sbdemo.service;
 
 import com.objectpartners.sbdemo.persistant.Team;
-import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -10,7 +10,8 @@ import java.util.List;
  */
 public interface TeamService {
 
-    public void saveTeams(List<? extends Team> teams);
+    public void saveTeams(Collection<? extends Team> teams);
+    public void resetStandings();
     public Team findTeamByName(String name, String nickName);
 
 }
