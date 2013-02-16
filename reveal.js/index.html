@@ -126,9 +126,157 @@
             <p>Demo code</p>
         </section>
         <section>
-            <h2>The JEngler Takes Over</h2>
-            <p>Some stuff about doing this Graily</p>
+            <h2>The JEngelr Takes Over</h2>
+            <p>Some stuff about doing this Grailsy</p>
         </section>
+        <section>
+            <h1>grails spring batch</h1>
+            <p>
+                <br>
+            </p>
+            <p>Source</p>
+            <p>
+                <a href="https://github.com/johnrengelman/grails-spring-batch">github.com/johnrengelman/grails-spring-batch</a>
+                <br>
+            </p>
+            <p>
+                <br>
+            </p>
+            <p>Plugin Page</p>
+            <p>
+                <a href="http://grails.org/plugin/spring-batch">grails.org/plugin/spring-batch</a>
+                <br>
+            </p>
+        </section>
+        <section>
+            <h2>Features</h2>
+            <div>
+                <br>
+            </div>
+            <div style="text-align: left;">
+                <ul>
+                    <li class="fragment">Use of entire Spring Batch XSD</li>
+                    <li class="fragment">Defined jobs using Groovy DSL</li>
+                    <li class="fragment">Job configuration reloading</li>
+                    <li class="fragment">Remote access through JMX</li>
+                    <li class="fragment">Auto create Spring Batch tables</li>
+                    <li class="fragment">Basic, extensible UI for job management</li>
+                </ul>
+            </div>
+        </section>
+        <section>
+            <section>
+                <h2>Job Definition</h2>
+                <div style="text-align: left;">
+                    <ul>
+                        <li>Define in grails-app/batch</li>
+                        <li>File name MUST end with BatchConfig.groovy</li>
+                    </ul>
+                    <div>
+                        <br>
+                    </div>
+                    <pre><code class="java">
+grails-app/batch/SimpleJob<font color="#cc0000">BatchConfig</font>.groovy
+                    </code></pre>
+                    <br>
+                </div>
+            </section>
+            <section>
+                <h2>Job Definition</h2>
+                <div style="text-align: left;">
+                    <ul>
+                        <li>Job definitions use Spring BeanBuilder</li>
+                        <li>All definitions are exposed in the application context</li>
+                        <li>Wrap definition in a 'beans' Closure</li>
+                    </ul>
+                    <div>
+                        <br>
+                    </div>
+                    <pre><code class="java">
+grails-app/batch/SimpleJobBatchConfig.groovy
+
+<font color="#cc0000">beans</font> {
+}
+                    </code></pre>
+                    <br>
+                </div>
+            </section>
+            <section>
+                <h2>Job Definition</h2>
+                <div style="text-align: left;">
+                    <ul>
+                        <li>Import the Spring Batch XML namespace</li>
+                    </ul>
+                    <div>
+                        <br>
+                    </div>
+                    <pre><code class="java">
+grails-app/batch/SimpleJobBatchConfig.groovy
+
+beans {
+    <font color="#cc0000">xmlns batch:'http://www.springframework.org/schema/batch'</font>
+}                   </code></pre>
+                    <br>
+                </div>
+
+            </section>
+            <section>
+                <h2>Job Definition</h2>
+                <div style="text-align: left;">
+                    <ul>
+                        <li>Use the namespace prefix to access Spring Batch configuration</li>
+                    </ul>&nbsp; &nbsp; &nbsp;
+                    <div>
+                        <br>
+                    </div>
+                    <pre><code class="java">
+grails-app/batch/SimpleJobBatchConfig.groovy
+
+beans {
+    xmlns <font color="#cc0000">batch</font>:'http://www.springframework.org/schema/batch'
+
+    <font color="#cc0000">batch</font>.job(id: 'simpleJob') {
+        <font color="#cc0000">batch</font>.step(id: 'logStart') {
+            ...
+        }
+    }
+}                   </code></pre>
+                    <br>
+                </div>
+
+            </section>
+            <section>
+                <h2>Job Definition</h2>
+                <div style="text-align: left;">
+                    <ul>
+                        <li>Utilize Grails services in Jobs</li>
+                    </ul>
+                    <div>
+                        <br>
+                    </div>
+                    <pre><code class="java">
+grails-app/batch/SimpleJobBatchConfig.groovy
+
+beans {
+    xmlns batch:'http://www.springframework.org/schema/batch'
+
+    batch.job(id: 'simpleJob') {
+        batch.step(id: 'logStart') {
+            batch.tasklet(<font color="#cc0000">ref: 'logStart'</font>)
+        }
+    }
+
+    <font color="#cc0000">logStart</font>(PrintStartMessageTasklet) { bean -&gt;
+        bean.autowire = 'byName'
+    }
+}
+                    </code></pre>
+                    <br>
+                </div>
+            </section>
+        </section>
+        </div>
+
     </div>
 
 </div>
