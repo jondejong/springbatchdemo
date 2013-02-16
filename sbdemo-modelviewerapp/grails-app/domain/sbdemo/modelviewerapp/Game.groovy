@@ -3,10 +3,10 @@ package sbdemo.modelviewerapp
 class Game {
 
     Team homeTeam
-    Team awayTeam
+    Team visitorTeam
 
     Integer homeScore
-    Integer awayScore
+    Integer visitorScore
 
     Date time;
 

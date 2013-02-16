@@ -22,25 +22,24 @@
 
     <!-- define the reader -->
     <bean id="gameItemReader" class="org.springframework.batch.item.file.FlatFileItemReader">
-        <property name="resource" ref="gameResource" />
+        <property name="resource" ref="gameResource"/>
         <property name="lineMapper" ref="gameLineMapper"/>
     </bean>
 
-    <bean id="gameLineMapper" class="com.objectpartners.sbdemo.gamejob.GameLineMapper" />
+    <bean id="gameLineMapper" class="com.objectpartners.sbdemo.gamejob.GameLineMapper"/>
 
     <bean id="gameResource" class="org.springframework.core.io.FileSystemResource">
-        <constructor-arg value="/Users/jondejong/projects/springbatchdemo/sbdemo/data/games.csv" />
+        <constructor-arg value="/Users/jondejong/projects/springbatchdemo/sbdemo/data/games.csv"/>
     </bean>
 
     <!-- define the processor -->
     <bean id="gameItemProcessor" class="com.objectpartners.sbdemo.gamejob.GameItemProcessor">
-
-
+        <property name="teamService" ref="teamService"/>
     </bean>
 
-
-
     <!-- define the writer -->
-    <bean id="gameWriter" class="com.objectpartners.sbdemo.gamejob.GameWriter"/>
+    <bean id="gameWriter" class="com.objectpartners.sbdemo.gamejob.GameWriter">
+        <property name="gameService" ref="gameService"/>
+    </bean>
 
 </beans>

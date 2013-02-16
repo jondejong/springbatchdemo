@@ -4,6 +4,7 @@ import com.objectpartners.sbdemo.persistant.Team;
 import com.objectpartners.sbdemo.service.TeamService;
 import org.springframework.batch.item.ItemWriter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,13 +16,8 @@ public class TeamWriter implements ItemWriter<Team> {
 
     @Override
     public void write(List<? extends Team> teams) throws Exception {
-
         System.out.println("Writing " + teams.size() + " teams.");
-
-        for(Team team : teams) {
-            teamService.saveTeam(team);
-        }
-
+        teamService.saveTeams(teams);
     }
 
     public void setTeamService(TeamService teamService) {

@@ -6,12 +6,16 @@
     <import resource="hibernate.xml"/>
     <import resource="batchContext.xml"/>
 
+    <!-- Services -->
     <bean id="gameService" class="com.objectpartners.sbdemo.service.GameServiceImpl">
+        <property name="gameDao" ref="gameDao" />
     </bean>
 
     <bean id="teamService" class="com.objectpartners.sbdemo.service.TeamServiceImpl">
         <property name="teamDao" ref="teamDao" />
     </bean>
 
+    <!-- DAO's -->
     <bean id="teamDao" class="com.objectpartners.sbdemo.dao.TeamDaoImpl" />
+    <bean id="gameDao" class="com.objectpartners.sbdemo.dao.GameDaoImpl" />
 </beans>

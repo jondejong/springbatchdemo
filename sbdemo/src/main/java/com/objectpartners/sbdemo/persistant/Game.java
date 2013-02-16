@@ -1,16 +1,38 @@
 package com.objectpartners.sbdemo.persistant;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.util.Date;
 
 /**
- * Game Entity object
+ * JPA Mapped Game Entity
  */
+@Entity
+@Table(name = "game")
 public class Game {
 
+    @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name="time")
     private Date date;
-    private Team visitors;
+
+    @ManyToOne
+    @JoinColumn(name = "visitor_team_id")
+    private Team visitor;
+
+    @ManyToOne
+    @JoinColumn(name = "home_team_id")
     private Team home;
+
+    @Column(name="visitor_score")
     private Integer visitorScore;
+
+    @Column(name="home_score")
     private Integer homeScore;
 
     public Date getDate() {
@@ -21,12 +43,12 @@ public class Game {
         this.date = date;
     }
 
-    public Team getVisitors() {
-        return visitors;
+    public Team getVisitor() {
+        return visitor;
     }
 
-    public void setVisitors(Team visitors) {
-        this.visitors = visitors;
+    public void setVisitor(Team visitor) {
+        this.visitor = visitor;
     }
 
     public Team getHome() {

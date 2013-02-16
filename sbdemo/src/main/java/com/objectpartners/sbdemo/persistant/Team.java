@@ -5,11 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jondejong
- * Date: 2/6/13
- * Time: 9:37 PM
- * To change this template use File | Settings | File Templates.
+ * JPA Mapped Team Entity
  */
 @Entity
 @Table(name = "team")

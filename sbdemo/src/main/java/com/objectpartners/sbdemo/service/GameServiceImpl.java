@@ -1,22 +1,27 @@
 package com.objectpartners.sbdemo.service;
 
+import com.objectpartners.sbdemo.dao.GameDao;
 import com.objectpartners.sbdemo.persistant.Game;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jondejong
- * Date: 2/11/13
- * Time: 4:59 PM
- * To change this template use File | Settings | File Templates.
+ * JPA Implementation of GameService
  */
+@Transactional
 public class GameServiceImpl implements GameService {
-    @Override
-    public void saveGame(Game game) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
+
+    private GameDao gameDao;
 
     @Override
-    public void findTeamByName(String name, String nickName) {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public void saveGames(List<? extends Game> games) {
+        for(Game game : games) {
+            gameDao.saveGame(game);
+        }
+    }
+
+    public void setGameDao(GameDao gameDao) {
+        this.gameDao = gameDao;
     }
 }
