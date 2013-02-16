@@ -12,20 +12,29 @@
     <job id="gameJob" restartable="false" xmlns="http://www.springframework.org/schema/batch">
         <step id="step1">
             <tasklet>
-                <chunk reader="gameItemReader" writer="gameWriter" processor="gameItemProcessor" commit-interval="5"/>
+                <chunk reader="teamItemReader" writer="gameWriter" commit-interval="5"/>
             </tasklet>
         </step>
 
     </job>
 
+    <bean id="teamItemReader" class="com.objectpartners.sbdemo.gamereader.TeamReader">
+        <constructor-arg value="/Users/jondejong/projects/springbatchdemo/sbdemo/data/teams.csv" />
+    </bean>
+    <bean id="gameItemProcessor" class="com.objectpartners.sbdemo.gamereader.GameItemProcessor"/>
+    <bean id="gameWriter" class="com.objectpartners.sbdemo.gamereader.TeamWriter">
+        <property name="teamDao" ref="teamDao"/>
+    </bean>
+
     <bean id="jobRepository" class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean">
         <property name="transactionManager" ref="transactionManager"/>
+        <property name="isolationLevelForCreate" value="ISOLATION_DEFAULT"/>
     </bean>
 
     <bean id="jobLauncher" class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
         <property name="jobRepository" ref="jobRepository"/>
         <!--<property name="taskExecutor">-->
-            <!--<bean class="org.springframework.core.task.SimpleAsyncTaskExecutor"/>-->
+        <!--<bean class="org.springframework.core.task.SimpleAsyncTaskExecutor"/>-->
         <!--</property>-->
     </bean>
 

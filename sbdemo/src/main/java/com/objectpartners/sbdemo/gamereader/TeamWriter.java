@@ -1,6 +1,8 @@
 package com.objectpartners.sbdemo.gamereader;
 
+import com.objectpartners.sbdemo.dao.TeamDao;
 import com.objectpartners.sbdemo.persistant.PersistentGame;
+import com.objectpartners.sbdemo.persistant.Team;
 import com.objectpartners.sbdemo.service.GameService;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,22 +16,22 @@ import java.util.List;
  * Time: 4:47 PM
  * To change this template use File | Settings | File Templates.
  */
-public class GameWriter implements ItemWriter<PersistentGame> {
+public class TeamWriter implements ItemWriter<Team> {
 
-    private GameService gameService;
+    private TeamDao teamDao;
 
     @Override
-    public void write(List<? extends PersistentGame> persistentGames) throws Exception {
+    public void write(List<? extends Team> teams) throws Exception {
 
-        System.out.println("Writing " + persistentGames.size() + " games.");
+        System.out.println("Writing " + teams.size() + " teams.");
 
-        for(PersistentGame game : persistentGames) {
-            gameService.saveGame(game);
+        for(Team team : teams) {
+            teamDao.saveTeam(team);
         }
+
     }
 
-    @Autowired
-    public void setGameService(GameService gameService) {
-        this.gameService = gameService;
+    public void setTeamDao(TeamDao teamDao) {
+        this.teamDao = teamDao;
     }
 }
