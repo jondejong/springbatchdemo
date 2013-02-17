@@ -18,7 +18,7 @@
         </step>
         <step id="step2">
             <tasklet>
-                <chunk reader="dbGameReader" processor="standingsProcessor" writer="standingWriter" commit-interval="1"/>
+                <chunk reader="dbGameReader" processor="standingsProcessor" writer="standingWriter" commit-interval="5"/>
             </tasklet>
         </step>
     </job>
