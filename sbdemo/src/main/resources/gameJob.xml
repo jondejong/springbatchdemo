@@ -11,14 +11,17 @@
     <import resource="applicationContext.xml"/>
 
     <job id="gameJob" restartable="false" xmlns="http://www.springframework.org/schema/batch">
-        <step id="gameStep1">
+        <step id="step1" next="step2">
             <tasklet>
                 <chunk reader="gameItemReader" processor="gameItemProcessor" writer="gameWriter" commit-interval="5"/>
             </tasklet>
         </step>
-
+        <step id="step2">
+            <tasklet>
+                <chunk reader="dbGameReader" processor="standingsProcessor" writer="standingWriter" commit-interval="1"/>
+            </tasklet>
+        </step>
     </job>
-
 
     <!-- define the reader -->
     <bean id="gameItemReader" class="org.springframework.batch.item.file.FlatFileItemReader">
@@ -26,20 +29,36 @@
         <property name="lineMapper" ref="gameLineMapper"/>
     </bean>
 
-    <bean id="gameLineMapper" class="com.objectpartners.sbdemo.gamejob.GameLineMapper"/>
+    <bean id="gameLineMapper" class="com.objectpartners.sbdemo.gamejob.step1.GameLineMapper"/>
 
     <bean id="gameResource" class="org.springframework.core.io.FileSystemResource">
         <constructor-arg value="/Users/jondejong/projects/springbatchdemo/sbdemo/data/games.csv"/>
     </bean>
 
     <!-- define the processor -->
-    <bean id="gameItemProcessor" class="com.objectpartners.sbdemo.gamejob.GameItemProcessor">
+    <bean id="gameItemProcessor" class="com.objectpartners.sbdemo.gamejob.step1.GameItemProcessor">
         <property name="teamService" ref="teamService"/>
     </bean>
 
     <!-- define the writer -->
-    <bean id="gameWriter" class="com.objectpartners.sbdemo.gamejob.GameWriter">
+    <bean id="gameWriter" class="com.objectpartners.sbdemo.gamejob.step1.GameWriter">
         <property name="gameService" ref="gameService"/>
+    </bean>
+
+    <!-- Read games via hHibernate -->
+    <bean id="dbGameReader" class="org.springframework.batch.item.database.HibernateCursorItemReader">
+        <property name="sessionFactory" ref="sessionFactory" />
+        <property name="queryString" value="from Game" />
+    </bean>
+
+    <!-- Update standing for each game -->
+    <bean id="standingsProcessor" class="com.objectpartners.sbdemo.gamejob.step2.StandingProcessor">
+        <property name="teamService" ref="teamService" />
+    </bean>
+
+    <!-- Write new standings -->
+    <bean id="standingWriter" class="com.objectpartners.sbdemo.gamejob.step2.StandingWriter">
+        <property name="teamService" ref="teamService" />
     </bean>
 
 </beans>

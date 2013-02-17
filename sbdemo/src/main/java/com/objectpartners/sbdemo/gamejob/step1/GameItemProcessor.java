@@ -1,4 +1,4 @@
-package com.objectpartners.sbdemo.gamejob;
+package com.objectpartners.sbdemo.gamejob.step1;
 
 import com.objectpartners.sbdemo.item.GameItem;
 import com.objectpartners.sbdemo.persistant.Game;

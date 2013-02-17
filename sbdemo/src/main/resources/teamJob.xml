@@ -23,7 +23,7 @@
         <constructor-arg value="/Users/jondejong/projects/springbatchdemo/sbdemo/data/teams.csv" />
     </bean>
 
-    <bean id="gameItemProcessor" class="com.objectpartners.sbdemo.gamejob.GameItemProcessor"/>
+    <bean id="gameItemProcessor" class="com.objectpartners.sbdemo.gamejob.step1.GameItemProcessor"/>
 
     <bean id="teamWriter" class="com.objectpartners.sbdemo.teamjob.TeamWriter">
         <property name="teamService" ref="teamService"/>

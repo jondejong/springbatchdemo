@@ -1,4 +1,4 @@
-package com.objectpartners.sbdemo.standingssjob;
+package com.objectpartners.sbdemo.gamejob.step2;
 
 import com.objectpartners.sbdemo.persistant.Team;
 import com.objectpartners.sbdemo.service.TeamService;
