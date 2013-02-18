@@ -1,11 +1,11 @@
 package com.objectpartners.sbdemo.gamejob.step1;
 
 import com.objectpartners.sbdemo.item.GameItem;
-import static  org.junit.Assert.*;
 import org.junit.Test;
 
 import java.util.Calendar;
-import java.util.GregorianCalendar;
+
+import static org.junit.Assert.*;
 
 /**
  * Tests for GameLineMapper
