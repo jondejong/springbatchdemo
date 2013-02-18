@@ -3,7 +3,7 @@ package com.objectpartners.sbdemo.gamejob.step1;
 import com.objectpartners.sbdemo.item.GameItem;
 import com.objectpartners.sbdemo.persistant.Game;
 import com.objectpartners.sbdemo.persistant.Team;
-import com.objectpartners.sbdemo.service.TeamService;
+import com.objectpartners.sbdemo.service.SbdemoService;
 import org.springframework.batch.item.ItemProcessor;
 
 /**
@@ -11,7 +11,7 @@ import org.springframework.batch.item.ItemProcessor;
  */
 public class GameItemProcessor implements ItemProcessor<GameItem, Game>{
 
-    private TeamService teamService;
+    private SbdemoService sbdemoService;
 
     @Override
     public Game process(GameItem gameItem) throws Exception {
@@ -19,8 +19,8 @@ public class GameItemProcessor implements ItemProcessor<GameItem, Game>{
 
         Game game = new Game();
 
-        Team home = teamService.findTeamByName(gameItem.getHomeTeamName(), gameItem.getHomeTeamNickeName());
-        Team visitor = teamService.findTeamByName(gameItem.getVisitingTeamName(), gameItem.getVisitingTeamNickName());
+        Team home = sbdemoService.findTeamByName(gameItem.getHomeTeamName(), gameItem.getHomeTeamNickeName());
+        Team visitor = sbdemoService.findTeamByName(gameItem.getVisitingTeamName(), gameItem.getVisitingTeamNickName());
 
         game.setDate(gameItem.getDate());
         game.setHome(home);
@@ -31,7 +31,7 @@ public class GameItemProcessor implements ItemProcessor<GameItem, Game>{
         return game;
     }
 
-    public void setTeamService(TeamService teamService) {
-        this.teamService = teamService;
+    public void setSbdemoService(SbdemoService sbdemoService) {
+        this.sbdemoService = sbdemoService;
     }
 }

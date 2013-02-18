@@ -22,4 +22,8 @@ class Team {
 
     static constraints = {
     }
+
+    static hasMany = [homeGames: Game, awayGames: Game]
+    static mappedBy = [homeGames: 'homeTeam', awayGames: 'visitorTeam']
+
 }

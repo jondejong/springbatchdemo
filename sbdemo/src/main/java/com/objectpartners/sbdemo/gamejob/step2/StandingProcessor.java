@@ -2,7 +2,7 @@ package com.objectpartners.sbdemo.gamejob.step2;
 
 import com.objectpartners.sbdemo.persistant.Game;
 import com.objectpartners.sbdemo.persistant.Team;
-import com.objectpartners.sbdemo.service.TeamService;
+import com.objectpartners.sbdemo.service.SbdemoService;
 import org.springframework.batch.item.ItemProcessor;
 
 import java.util.Collection;
@@ -13,7 +13,7 @@ import java.util.HashSet;
  */
 public class StandingProcessor implements ItemProcessor<Game, Collection<Team>> {
 
-    private TeamService teamService;
+    private SbdemoService sbdemoService;
 
     private static boolean cleared = false;
 
@@ -22,31 +22,14 @@ public class StandingProcessor implements ItemProcessor<Game, Collection<Team>> 
         Collection<Team> teams = new HashSet<Team>();
 
         if(!cleared) {
-            teamService.resetStandings();
+            sbdemoService.resetStandings();
             cleared = true;
         }
 
-        if(game.getHomeScore() > game.getVisitorScore()) {
-            game.getHome().setWins(game.getHome().getWins() + 1);
-            game.getVisitor().setLosses(game.getVisitor().getLosses() + 1);
-        } else {
-            game.getHome().setLosses(game.getHome().getLosses() + 1);
-            game.getVisitor().setWins(game.getVisitor().getWins() + 1);
-        }
-
-        Double homeWinPercentege = (new Double(game.getHome().getWins()))/(new Double(game.getHome().getWins() + game.getHome().getLosses()));
-        Double visitorWinPercentege = (new Double(game.getVisitor().getWins()))/(new Double(game.getVisitor().getWins() + game.getVisitor().getLosses()));
-
-        game.getHome().setWinPercentage(homeWinPercentege);
-        game.getVisitor().setWinPercentage(visitorWinPercentege);
-
-        teams.add(game.getHome());
-        teams.add(game.getVisitor());
-
-        return teams;
+        return sbdemoService.updateTeamStandings(game);
     }
 
-    public void setTeamService(TeamService teamService) {
-        this.teamService = teamService;
+    public void setSbdemoService(SbdemoService sbdemoService) {
+        this.sbdemoService = sbdemoService;
     }
 }

@@ -32,17 +32,17 @@
     <bean id="gameLineMapper" class="com.objectpartners.sbdemo.gamejob.step1.GameLineMapper"/>
 
     <bean id="gameResource" class="org.springframework.core.io.FileSystemResource">
-        <constructor-arg value="/Users/jondejong/projects/springbatchdemo/sbdemo/data/games.csv"/>
+        <constructor-arg value="${sbdemo.data.root}${sbdemo.game.job.data.file}"/>
     </bean>
 
     <!-- define the processor -->
     <bean id="gameItemProcessor" class="com.objectpartners.sbdemo.gamejob.step1.GameItemProcessor">
-        <property name="teamService" ref="teamService"/>
+        <property name="sbdemoService" ref="sbdemoService"/>
     </bean>
 
     <!-- define the writer -->
     <bean id="gameWriter" class="com.objectpartners.sbdemo.gamejob.step1.GameWriter">
-        <property name="gameService" ref="gameService"/>
+        <property name="sbdemoService" ref="sbdemoService"/>
     </bean>
 
     <!-- Read games via hHibernate -->
@@ -53,12 +53,12 @@
 
     <!-- Update standing for each game -->
     <bean id="standingsProcessor" class="com.objectpartners.sbdemo.gamejob.step2.StandingProcessor">
-        <property name="teamService" ref="teamService" />
+        <property name="sbdemoService" ref="sbdemoService" />
     </bean>
 
     <!-- Write new standings -->
     <bean id="standingWriter" class="com.objectpartners.sbdemo.gamejob.step2.StandingWriter">
-        <property name="teamService" ref="teamService" />
+        <property name="sbdemoService" ref="sbdemoService" />
     </bean>
 
 </beans>

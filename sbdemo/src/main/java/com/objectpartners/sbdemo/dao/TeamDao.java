@@ -10,6 +10,7 @@ import java.util.List;
 public interface TeamDao {
 
     public void saveTeam(Team team);
+    public Team load(Long id);
     public Team find(String name, String nickName);
     public List<Team> findAll();
 }

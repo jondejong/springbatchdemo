@@ -24,6 +24,11 @@ public class TeamDaoImpl implements TeamDao {
     }
 
     @Override
+    public Team load(Long id) {
+        return entityManager.find(Team.class, id);
+    }
+
+    @Override
     public Team find(String name, String nickName) {
 
         Team exampleTeam = new Team();
@@ -42,7 +47,6 @@ public class TeamDaoImpl implements TeamDao {
         }
 
         return teams.get(0);
-
     }
 
     @Override
