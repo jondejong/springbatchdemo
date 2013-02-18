@@ -32,12 +32,10 @@ public class GameLineMapper implements LineMapper<GameItem> {
         game.setDate(parseDate(tokens[index++]));
 
         return game;
-
     }
 
     private Date parseDate(String dateString) throws ParseException {
         SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy:HH:mm");
-
         return format.parse(dateString);
     }
 

@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- * Implementation of GameDao
+ * Implementation of GameDao with JPA
  */
 public class GameDaoImpl implements GameDao {
 

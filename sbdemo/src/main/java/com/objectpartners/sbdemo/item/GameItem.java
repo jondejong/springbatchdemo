@@ -3,11 +3,7 @@ package com.objectpartners.sbdemo.item;
 import java.util.Date;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jondejong
- * Date: 2/11/13
- * Time: 4:53 PM
- * To change this template use File | Settings | File Templates.
+ * Class to store one line from the game CSV file.
  */
 public class GameItem {
     private Date date;

@@ -8,7 +8,8 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- *
+ * Item writer to write updated teams to the database after their
+ * standings have been recalculated
  */
 public class StandingWriter implements ItemWriter<Collection<Team>> {
 

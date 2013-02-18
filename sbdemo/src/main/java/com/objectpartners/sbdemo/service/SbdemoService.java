@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Services for SB Demo
+ * Service for SB Demo
  */
 public interface SbdemoService {
     public void saveGames(List<? extends Game> games);

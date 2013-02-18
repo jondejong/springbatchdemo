@@ -19,13 +19,10 @@ public class StandingProcessor implements ItemProcessor<Game, Collection<Team>> 
 
     @Override
     public Collection<Team> process(Game game) throws Exception {
-        Collection<Team> teams = new HashSet<Team>();
-
         if(!cleared) {
             sbdemoService.resetStandings();
             cleared = true;
         }
-
         return sbdemoService.updateTeamStandings(game);
     }
 
