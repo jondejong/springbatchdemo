@@ -59,11 +59,11 @@ public class SbdemoServiceImpl implements SbdemoService {
             visitor.setWins(visitor.getWins() + 1);
         }
 
-        Double homeWinPercentege = (new Double(home.getWins()))/(new Double(home.getWins() + home.getLosses()));
-        Double visitorWinPercentege = (new Double(visitor.getWins()))/(new Double(visitor.getWins() + visitor.getLosses()));
+        Double homeWinPercentage = (new Double(home.getWins()))/(new Double(home.getWins() + home.getLosses()));
+        Double visitorWinPercentage = (new Double(visitor.getWins()))/(new Double(visitor.getWins() + visitor.getLosses()));
 
-        home.setWinPercentage(homeWinPercentege);
-        visitor.setWinPercentage(visitorWinPercentege);
+        home.setWinPercentage(homeWinPercentage);
+        visitor.setWinPercentage(visitorWinPercentage);
 
         List<Team> teams = new ArrayList<Team>();
 
