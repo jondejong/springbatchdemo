@@ -34,248 +34,284 @@
 
 <div class="reveal">
 
-    <!-- Any section element inside of this container is displayed as a slide -->
-    <div class="slides">
+<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
 
-        <section>
-            <h1>Sring Batch 2</h1>
+<section>
+    <h1>Sring Batch 2</h1>
 
-            <h3>sub title</h3>
+    <h3>sub title</h3>
 
-            <p>
-                <small>Jon DeJong <a href="http://twitter.com/jondejong">@jondejong</a></small>
-                <small>Jon Engleman <a href="http://twitter.com/johnrengelman">@johnrengelman</a></small>
-            </p>
-        </section>
+    <p>
+        <small>Jon DeJong <a href="http://twitter.com/jondejong">@jondejong</a></small>
+        <small>Jon Engleman <a href="http://twitter.com/johnrengelman">@johnrengelman</a></small>
+    </p>
+</section>
 
-        <section>
-            <section>
-                <h2>Batch Processing</h2>
-            </section>
-            <section>
-                <h3>The Basics</h3>
+<section>
+    <section>
+        <h2>Batch Processing</h2>
+    </section>
+    <section>
+        <h3>The Basics</h3>
 
-                <p>Terminology</p>
-            </section>
-            <section>
-                <img src="img/batch_example1.png" />
-            </section>
-        </section>
-        <section>
-            <section>
-                <h2>Spring Batch</h2>
-            </section>
-            <section>
-                <img src="img/batch_example2.png" />
-            </section>
-            <section>
-                <h3>Jobs</h3>
+        <p>Terminology</p>
+    </section>
+    <section>
+        <img src="img/batch_example1.png"/>
+    </section>
+</section>
+<section>
+    <section>
+        <h2>Spring Batch</h2>
+    </section>
+    <section>
+        <img src="img/batch_example2.png"/>
+    </section>
+    <section>
+        <h3>Jobs</h3>
 
-                <p>Stuff about jobs</p>
-            </section>
-            <section>
-                <h3>Steps</h3>
+        <p>Stuff about jobs</p>
+    </section>
+    <section>
+        <h3>Steps</h3>
 
-                <p>Stuff about steps (readers/processors/writers)</p>
-            </section>
-        </section>
-        <section>
-            <h2>Configuration</h2>
+        <p>Stuff about steps (readers/processors/writers)</p>
+    </section>
+</section>
+<section>
+    <h2>Configuration</h2>
+            <pre>
+                <code class="java">
+                    <span style="font-size: x-small">
+                &lt;job id="teamJob" restartable="false" xmlns="http://www.springframework.org/schema/batch"&gt;
+                    &lt;step id="teamStep1"&gt;
+                        &lt;tasklet&gt;
+                            &lt;chunk reader="teamItemReader" writer="teamWriter" commit-interval="5"/&gt;
+                        &lt;/tasklet&gt;
+                    &lt;/step&gt;
+                &lt;/job&gt;
+                &lt;bean id="teamItemReader" class="com.objectpartners.sbdemo.teamjob.TeamReader"&gt;
+                    &lt;constructor-arg value="${sbdemo.data.root}${sbdemo.team.job.data.file}"/&gt;
+                &lt;/bean&gt;
+                &lt;bean id="gameItemProcessor" class="com.objectpartners.sbdemo.gamejob.step1.GameItemProcessor"/&gt;
+                &lt;bean id="teamWriter" class="com.objectpartners.sbdemo.teamjob.TeamWriter"&gt;
+                    &lt;property name="sbdemoService" ref="sbdemoService"/&gt;
+                &lt;/bean&gt;
+            </span>
+                </code>
+            </pre>
+</section>
+<section>
+    <section>
+        <H2>ItemReader</H2>
 
-            <p>Example Job Configuration Here</p>
-        </section>
-        <section>
-            <section>
-                <H2>ItemReader</H2>
+        <p>Example ItemReader implementation</p>
+    </section>
+    <section>
+        <h3>??Other Examples?</h3>
 
-                <p>Example ItemReader implementation</p>
-            </section>
-            <section>
-                <h3>??Other Examples?</h3>
-                <p>HibernateCursorItemReader</p>
-                <p>FlatFileItemReader</p>
-                <p>JdbcCursorItemReader</p>
-            </section>
+        <p>HibernateCursorItemReader</p>
 
-        </section>
-        <section>
-            <H2>ItemProcessor</H2>
+        <p>FlatFileItemReader</p>
 
-            <p>Example ItemProcessor implementation</p>
-        </section>
-        <section>
-            <section>
-                <H2>ItemWriter</H2>
+        <p>JdbcCursorItemReader</p>
+    </section>
 
-                <p>Example ItemWrite implementation</p>
-            </section>
-            <section>
-                <h3>??Other Examples??</h3>
-            </section>
-        </section>
-        <section>
-            <h2>Conditional Paths</h2>
-        </section>
-        <section>
-            <h2>Other stuff???</h2>
-        </section>
-        <section>
-            <h2>Putting It All Together</h2>
-            <p>Demo code</p>
-        </section>
-        <section>
-            <h2>The JEngelr Takes Over</h2>
-            <p>Some stuff about doing this Grailsy</p>
-        </section>
-        <section>
-            <h1>grails spring batch</h1>
-            <p>
-                <br>
-            </p>
-            <p>Source</p>
-            <p>
-                <a href="https://github.com/johnrengelman/grails-spring-batch">github.com/johnrengelman/grails-spring-batch</a>
-                <br>
-            </p>
-            <p>
-                <br>
-            </p>
-            <p>Plugin Page</p>
-            <p>
-                <a href="http://grails.org/plugin/spring-batch">grails.org/plugin/spring-batch</a>
-                <br>
-            </p>
-        </section>
-        <section>
-            <h2>Features</h2>
+</section>
+<section>
+    <H2>ItemProcessor</H2>
+
+    <p>Example ItemProcessor implementation</p>
+</section>
+<section>
+    <section>
+        <H2>ItemWriter</H2>
+
+        <p>Example ItemWrite implementation</p>
+    </section>
+    <section>
+        <h3>??Other Examples??</h3>
+    </section>
+</section>
+<section>
+    <h2>Conditional Paths</h2>
+</section>
+<section>
+    <h2>Other stuff???</h2>
+</section>
+<section>
+    <h2>Putting It All Together</h2>
+
+    <p>Demo code</p>
+</section>
+<section>
+    <h2>The JEngelr Takes Over</h2>
+
+    <p>Some stuff about doing this Grailsy</p>
+</section>
+<section>
+    <h1>grails spring batch</h1>
+
+    <p>
+        <br>
+    </p>
+
+    <p>Source</p>
+
+    <p>
+        <a href="https://github.com/johnrengelman/grails-spring-batch">github.com/johnrengelman/grails-spring-batch</a>
+        <br>
+    </p>
+
+    <p>
+        <br>
+    </p>
+
+    <p>Plugin Page</p>
+
+    <p>
+        <a href="http://grails.org/plugin/spring-batch">grails.org/plugin/spring-batch</a>
+        <br>
+    </p>
+</section>
+<section>
+    <h2>Features</h2>
+
+    <div>
+        <br>
+    </div>
+    <div style="text-align: left;">
+        <ul>
+            <li class="fragment">Use of entire Spring Batch XSD</li>
+            <li class="fragment">Defined jobs using Groovy DSL</li>
+            <li class="fragment">Job configuration reloading</li>
+            <li class="fragment">Remote access through JMX</li>
+            <li class="fragment">Auto create Spring Batch tables</li>
+            <li class="fragment">Basic, extensible UI for job management</li>
+        </ul>
+    </div>
+</section>
+<section>
+    <section>
+        <h2>Job Definition</h2>
+
+        <div style="text-align: left;">
+            <ul>
+                <li>Define in grails-app/batch</li>
+                <li>File name MUST end with BatchConfig.groovy</li>
+            </ul>
             <div>
                 <br>
             </div>
-            <div style="text-align: left;">
-                <ul>
-                    <li class="fragment">Use of entire Spring Batch XSD</li>
-                    <li class="fragment">Defined jobs using Groovy DSL</li>
-                    <li class="fragment">Job configuration reloading</li>
-                    <li class="fragment">Remote access through JMX</li>
-                    <li class="fragment">Auto create Spring Batch tables</li>
-                    <li class="fragment">Basic, extensible UI for job management</li>
-                </ul>
+                    <pre><code class="java">
+                        grails-app/batch/SimpleJob<font color="#cc0000">BatchConfig</font>.groovy
+                    </code></pre>
+            <br>
+        </div>
+    </section>
+    <section>
+        <h2>Job Definition</h2>
+
+        <div style="text-align: left;">
+            <ul>
+                <li>Job definitions use Spring BeanBuilder</li>
+                <li>All definitions are exposed in the application context</li>
+                <li>Wrap definition in a 'beans' Closure</li>
+            </ul>
+            <div>
+                <br>
             </div>
-        </section>
-        <section>
-            <section>
-                <h2>Job Definition</h2>
-                <div style="text-align: left;">
-                    <ul>
-                        <li>Define in grails-app/batch</li>
-                        <li>File name MUST end with BatchConfig.groovy</li>
-                    </ul>
-                    <div>
-                        <br>
-                    </div>
                     <pre><code class="java">
-grails-app/batch/SimpleJob<font color="#cc0000">BatchConfig</font>.groovy
+                        grails-app/batch/SimpleJobBatchConfig.groovy
+
+                        <font color="#cc0000">beans</font> {
+                        }
                     </code></pre>
-                    <br>
-                </div>
-            </section>
-            <section>
-                <h2>Job Definition</h2>
-                <div style="text-align: left;">
-                    <ul>
-                        <li>Job definitions use Spring BeanBuilder</li>
-                        <li>All definitions are exposed in the application context</li>
-                        <li>Wrap definition in a 'beans' Closure</li>
-                    </ul>
-                    <div>
-                        <br>
-                    </div>
+            <br>
+        </div>
+    </section>
+    <section>
+        <h2>Job Definition</h2>
+
+        <div style="text-align: left;">
+            <ul>
+                <li>Import the Spring Batch XML namespace</li>
+            </ul>
+            <div>
+                <br>
+            </div>
                     <pre><code class="java">
-grails-app/batch/SimpleJobBatchConfig.groovy
+                        grails-app/batch/SimpleJobBatchConfig.groovy
 
-<font color="#cc0000">beans</font> {
-}
-                    </code></pre>
-                    <br>
-                </div>
-            </section>
-            <section>
-                <h2>Job Definition</h2>
-                <div style="text-align: left;">
-                    <ul>
-                        <li>Import the Spring Batch XML namespace</li>
-                    </ul>
-                    <div>
-                        <br>
-                    </div>
-                    <pre><code class="java">
-grails-app/batch/SimpleJobBatchConfig.groovy
-
-beans {
-    <font color="#cc0000">xmlns batch:'http://www.springframework.org/schema/batch'</font>
-}                   </code></pre>
-                    <br>
-                </div>
-
-            </section>
-            <section>
-                <h2>Job Definition</h2>
-                <div style="text-align: left;">
-                    <ul>
-                        <li>Use the namespace prefix to access Spring Batch configuration</li>
-                    </ul>&nbsp; &nbsp; &nbsp;
-                    <div>
-                        <br>
-                    </div>
-                    <pre><code class="java">
-grails-app/batch/SimpleJobBatchConfig.groovy
-
-beans {
-    xmlns <font color="#cc0000">batch</font>:'http://www.springframework.org/schema/batch'
-
-    <font color="#cc0000">batch</font>.job(id: 'simpleJob') {
-        <font color="#cc0000">batch</font>.step(id: 'logStart') {
-            ...
-        }
-    }
-}                   </code></pre>
-                    <br>
-                </div>
-
-            </section>
-            <section>
-                <h2>Job Definition</h2>
-                <div style="text-align: left;">
-                    <ul>
-                        <li>Utilize Grails services in Jobs</li>
-                    </ul>
-                    <div>
-                        <br>
-                    </div>
-                    <pre><code class="java">
-grails-app/batch/SimpleJobBatchConfig.groovy
-
-beans {
-    xmlns batch:'http://www.springframework.org/schema/batch'
-
-    batch.job(id: 'simpleJob') {
-        batch.step(id: 'logStart') {
-            batch.tasklet(<font color="#cc0000">ref: 'logStart'</font>)
-        }
-    }
-
-    <font color="#cc0000">logStart</font>(PrintStartMessageTasklet) { bean -&gt;
-        bean.autowire = 'byName'
-    }
-}
-                    </code></pre>
-                    <br>
-                </div>
-            </section>
-        </section>
+                        beans {
+                        <font color="#cc0000">xmlns batch:'http://www.springframework.org/schema/batch'</font>
+                        } </code></pre>
+            <br>
         </div>
 
-    </div>
+    </section>
+    <section>
+        <h2>Job Definition</h2>
+
+        <div style="text-align: left;">
+            <ul>
+                <li>Use the namespace prefix to access Spring Batch configuration</li>
+            </ul>
+            &nbsp; &nbsp; &nbsp;
+            <div>
+                <br>
+            </div>
+                    <pre><code class="java">
+                        grails-app/batch/SimpleJobBatchConfig.groovy
+
+                        beans {
+                        xmlns <font color="#cc0000">batch</font>:'http://www.springframework.org/schema/batch'
+
+                        <font color="#cc0000">batch</font>.job(id: 'simpleJob') {
+                        <font color="#cc0000">batch</font>.step(id: 'logStart') {
+                        ...
+                        }
+                        }
+                        } </code></pre>
+            <br>
+        </div>
+
+    </section>
+    <section>
+        <h2>Job Definition</h2>
+
+        <div style="text-align: left;">
+            <ul>
+                <li>Utilize Grails services in Jobs</li>
+            </ul>
+            <div>
+                <br>
+            </div>
+                    <pre><code class="java">
+                        grails-app/batch/SimpleJobBatchConfig.groovy
+
+                        beans {
+                        xmlns batch:'http://www.springframework.org/schema/batch'
+
+                        batch.job(id: 'simpleJob') {
+                        batch.step(id: 'logStart') {
+                        batch.tasklet(<font color="#cc0000">ref: 'logStart'</font>)
+                        }
+                        }
+
+                        <font color="#cc0000">logStart</font>(PrintStartMessageTasklet) { bean -&gt;
+                        bean.autowire = 'byName'
+                        }
+                        }
+                    </code></pre>
+            <br>
+        </div>
+    </section>
+</section>
+</div>
+
+</div>
 
 </div>
 
