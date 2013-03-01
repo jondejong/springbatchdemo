@@ -106,29 +106,50 @@
     <section>
         <H2>ItemReader</H2>
 
-        <p>Example ItemReader implementation</p>
+        <pre>
+            <code class="java">
+public interface ItemReader &lt;T&gt; {
+    T read() Exception,
+             UnexpectedInputException,
+             ParseException,
+             NonTransientResourceException;
+}
+            </code>
+        </pre>
     </section>
     <section>
-        <h3>??Other Examples?</h3>
-
-        <p>HibernateCursorItemReader</p>
-
-        <p>FlatFileItemReader</p>
-
-        <p>JdbcCursorItemReader</p>
+        <h3>Some Readers Come Free</h3>
+        <ul>
+            <li class="fragment">FlatFileItemReader</li>
+            <li class="fragment">HibernateCursorItemReader</li>
+            <li class="fragment">JdbcCursorItemReader</li>
+        </ul>
     </section>
-
 </section>
 <section>
     <H2>ItemProcessor</H2>
 
-    <p>Example ItemProcessor implementation</p>
+    <p>Optional</p>
+
+    <pre>
+        <code class="java">
+public interface ItemProcessor &lt;I, O&gt;  {
+    O process(I i) throws java.lang.Exception;
+}
+        </code>
+    </pre>
+
 </section>
 <section>
     <section>
         <H2>ItemWriter</H2>
-
-        <p>Example ItemWrite implementation</p>
+        <pre>
+            <code class="java">
+public interface ItemWriter &lt;T&gt;  {
+    void write(java.util.List&lt;? extends T&gt; ts) throws Exception;
+}
+            </code>
+        </pre>
     </section>
     <section>
         <h3>??Other Examples??</h3>
