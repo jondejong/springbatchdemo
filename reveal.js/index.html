@@ -167,6 +167,18 @@ public interface ItemWriter &lt;T&gt; {
 </section>
 <section>
     <h2>Conditional Paths</h2>
+    <pre>
+<code class="java">
+&lt;job id="job"&gt;
+    &lt;step id="stepA" parent="s1"&gt;
+        &lt;next on="*" to="stepB" /&gt;
+        &lt;next on="FAILED" to="stepC" /&gt;
+    &lt;/step&gt;
+    &lt;step id="stepB" parent="s2" next="stepC" /&gt;
+    &lt;step id="stepC" parent="s3" /&gt;
+&lt;/job&gt;
+        </code>
+    </pre>
 </section>
 <section>
     <h2>Putting It All Together</h2>
