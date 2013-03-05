@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="utf-8">
@@ -166,7 +166,12 @@ public interface ItemWriter &lt;T&gt; {
     </section>
 </section>
 <section>
-    <h2>Conditional Paths</h2>
+    <section>
+        <h2>Step Control</h2>
+    </section>
+
+    <section>
+        <h3>Conditional Control</h3>
     <pre>
 <code class="java">
 &lt;job id="job"&gt;
@@ -179,6 +184,26 @@ public interface ItemWriter &lt;T&gt; {
 &lt;/job&gt;
         </code>
     </pre>
+    </section>
+    <section>
+        <h3>Parallel Flow</h3>
+        <pre>
+            <code class="java">
+&lt;split id="split1" next="step4"&gt;
+    &lt;flow&gt;
+        &lt;step id="step1" parent="s1" next="step2"/&gt;
+        &lt;step id="step2" parent="s2"/&gt;
+    &lt;/flow&gt;
+    &lt;flow&gt;
+        &lt;step id="step3" parent="s3"/&gt;
+    &lt;/flow&gt;
+&lt;/split&gt;
+&lt;step id="step4" parent="s4"/&gt;
+            </code>
+        </pre>
+    </section>
+
+
 </section>
 <section>
     <h2>Putting It All Together</h2>
