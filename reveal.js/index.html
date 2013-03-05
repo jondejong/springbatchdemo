@@ -55,7 +55,8 @@
     <section>
         <h3>The Basics</h3>
 
-        <p>Terminology</p>
+        <p>Batch processing is execution of a series of programs ("jobs") on a computer without manual intervention.</p>
+        <p>Source: Wikipedia</p>
     </section>
     <section>
         <img src="img/batch_example1.png"/>
@@ -83,21 +84,21 @@
     <h2>Configuration</h2>
             <pre>
                 <code class="java">
-                    <span style="font-size: x-small">
-                &lt;job id="teamJob" restartable="false" xmlns="http://www.springframework.org/schema/batch"&gt;
-                    &lt;step id="teamStep1"&gt;
-                        &lt;tasklet&gt;
-                            &lt;chunk reader="teamItemReader" writer="teamWriter" commit-interval="5"/&gt;
-                        &lt;/tasklet&gt;
-                    &lt;/step&gt;
-                &lt;/job&gt;
-                &lt;bean id="teamItemReader" class="com.objectpartners.sbdemo.teamjob.TeamReader"&gt;
-                    &lt;constructor-arg value="${sbdemo.data.root}${sbdemo.team.job.data.file}"/&gt;
-                &lt;/bean&gt;
-                &lt;bean id="gameItemProcessor" class="com.objectpartners.sbdemo.gamejob.step1.GameItemProcessor"/&gt;
-                &lt;bean id="teamWriter" class="com.objectpartners.sbdemo.teamjob.TeamWriter"&gt;
-                    &lt;property name="sbdemoService" ref="sbdemoService"/&gt;
-                &lt;/bean&gt;
+                    <span style="font-size: smaller;line-height: normal;">
+&lt;job id="teamJob" restartable="false"&gt;
+    &lt;step id="teamStep1"&gt;
+        &lt;tasklet&gt;
+            &lt;chunk reader="teamItemReader" writer="teamWriter" commit-interval="5"/&gt;
+        &lt;/tasklet&gt;
+    &lt;/step&gt;
+&lt;/job&gt;
+&lt;bean id="teamItemReader" class="com.objectpartners.sbdemo.teamjob.TeamReader"&gt;
+    &lt;constructor-arg value="${sbdemo.data.root}${sbdemo.team.job.data.file}"/&gt;
+&lt;/bean&gt;
+&lt;bean id="gameItemProcessor" class="com.objectpartners...GameItemProcessor"/&gt;
+&lt;bean id="teamWriter" class="com.objectpartners.sbdemo.teamjob.TeamWriter"&gt;
+    &lt;property name="sbdemoService" ref="sbdemoService"/&gt;
+&lt;/bean&gt;
             </span>
                 </code>
             </pre>
