@@ -65,17 +65,17 @@
         <h2>Spring Batch</h2>
     </section>
     <section>
-        <img src="img/batch_example2.png"/>
-    </section>
-    <section>
         <h3>Jobs</h3>
 
-        <p>Stuff about jobs</p>
+        <p>Defines the batch job. Consists one or more steps. Defines the path through the steps.</p>
     </section>
     <section>
         <h3>Steps</h3>
 
-        <p>Stuff about steps (readers/processors/writers)</p>
+        <p>Responsible for reading an Item from some input, and writing to some output. Consists of an ItemReader, an ItemWriter, and an option ItemProcessor</p>
+    </section>
+    <section>
+        <img src="img/batch_example2.png"/>
     </section>
 </section>
 <section>
@@ -109,9 +109,9 @@
             <code class="java">
 public interface ItemReader &lt;T&gt; {
     T read() Exception,
-             UnexpectedInputException,
-             ParseException,
-             NonTransientResourceException;
+        UnexpectedInputException,
+        ParseException,
+        NonTransientResourceException;
 }
             </code>
         </pre>
@@ -138,7 +138,7 @@ public interface ItemReader &lt;T&gt; {
 
     <pre>
         <code class="java">
-public interface ItemProcessor &lt;I, O&gt;  {
+public interface ItemProcessor &lt;I, O&gt; {
     O process(I i) throws java.lang.Exception;
 }
         </code>
@@ -150,7 +150,7 @@ public interface ItemProcessor &lt;I, O&gt;  {
         <H2>ItemWriter</H2>
         <pre>
             <code class="java">
-public interface ItemWriter &lt;T&gt;  {
+public interface ItemWriter &lt;T&gt; {
     void write(java.util.List&lt;? extends T&gt; ts) throws Exception;
 }
             </code>
@@ -228,7 +228,7 @@ public interface ItemWriter &lt;T&gt;  {
                 <br>
             </div>
                     <pre><code class="java">
-                        grails-app/batch/SimpleJob<font color="#cc0000">BatchConfig</font>.groovy
+grails-app/batch/SimpleJob<font color="#cc0000">BatchConfig</font>.groovy
                     </code></pre>
             <br>
         </div>
@@ -246,10 +246,10 @@ public interface ItemWriter &lt;T&gt;  {
                 <br>
             </div>
                     <pre><code class="java">
-                        grails-app/batch/SimpleJobBatchConfig.groovy
+grails-app/batch/SimpleJobBatchConfig.groovy
 
-                        <font color="#cc0000">beans</font> {
-                        }
+<font color="#cc0000">beans</font> {
+}
                     </code></pre>
             <br>
         </div>
@@ -265,11 +265,12 @@ public interface ItemWriter &lt;T&gt;  {
                 <br>
             </div>
                     <pre><code class="java">
-                        grails-app/batch/SimpleJobBatchConfig.groovy
+grails-app/batch/SimpleJobBatchConfig.groovy
 
-                        beans {
-                        <font color="#cc0000">xmlns batch:'http://www.springframework.org/schema/batch'</font>
-                        } </code></pre>
+beans {
+    <font color="#cc0000">xmlns batch:'http://www.springframework.org/schema/batch'</font>
+}
+                    </code></pre>
             <br>
         </div>
 
@@ -286,17 +287,18 @@ public interface ItemWriter &lt;T&gt;  {
                 <br>
             </div>
                     <pre><code class="java">
-                        grails-app/batch/SimpleJobBatchConfig.groovy
+grails-app/batch/SimpleJobBatchConfig.groovy
 
-                        beans {
-                        xmlns <font color="#cc0000">batch</font>:'http://www.springframework.org/schema/batch'
+beans {
+    xmlns <font color="#cc0000">batch</font>:'http://www.springframework.org/schema/batch'
 
-                        <font color="#cc0000">batch</font>.job(id: 'simpleJob') {
-                        <font color="#cc0000">batch</font>.step(id: 'logStart') {
-                        ...
-                        }
-                        }
-                        } </code></pre>
+    <font color="#cc0000">batch</font>.job(id: 'simpleJob') {
+        <font color="#cc0000">batch</font>.step(id: 'logStart') {
+        ...
+        }
+    }
+}
+                    </code></pre>
             <br>
         </div>
 
@@ -312,21 +314,21 @@ public interface ItemWriter &lt;T&gt;  {
                 <br>
             </div>
                     <pre><code class="java">
-                        grails-app/batch/SimpleJobBatchConfig.groovy
+grails-app/batch/SimpleJobBatchConfig.groovy
 
-                        beans {
-                        xmlns batch:'http://www.springframework.org/schema/batch'
+beans {
+    xmlns batch:'http://www.springframework.org/schema/batch'
 
-                        batch.job(id: 'simpleJob') {
-                        batch.step(id: 'logStart') {
-                        batch.tasklet(<font color="#cc0000">ref: 'logStart'</font>)
-                        }
-                        }
+    batch.job(id: 'simpleJob') {
+        batch.step(id: 'logStart') {
+            batch.tasklet(<font color="#cc0000">ref: 'logStart'</font>)
+        }
+    }
 
-                        <font color="#cc0000">logStart</font>(PrintStartMessageTasklet) { bean -&gt;
-                        bean.autowire = 'byName'
-                        }
-                        }
+    <font color="#cc0000">logStart</font>(PrintStartMessageTasklet) { bean -&gt;
+        bean.autowire = 'byName'
+    }
+}
                     </code></pre>
             <br>
         </div>
