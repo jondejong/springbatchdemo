@@ -1,3 +1,5 @@
+# Spring Batch 2.x
+
 This is the slide show for the Spring Batch 2.x presentation by Jon DeJong and John Engelman. To view it, simply open index.html. 
 
 Below is the original README from the reveal.js project:
