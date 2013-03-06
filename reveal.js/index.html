@@ -40,11 +40,11 @@
 <section>
     <h1>Sring Batch 2</h1>
 
-    <h3>sub title</h3>
+    <h3>Enterprise Batch Processing in Spring & Grails</h3>
 
     <p>
         <small>Jon DeJong <a href="http://twitter.com/jondejong">@jondejong</a></small>
-        <small>Jon Engleman <a href="http://twitter.com/johnrengelman">@johnrengelman</a></small>
+        <small>John Engelman <a href="http://twitter.com/johnrengelman">@johnrengelman</a></small>
     </p>
 </section>
 
@@ -211,29 +211,37 @@ public interface ItemWriter &lt;T&gt; {
     <p>Demo code</p>
 </section>
 <section>
-    <h1>grails spring batch</h1>
-
-    <p>
-        <br>
-    </p>
-
-    <p>Source</p>
-
-    <p>
-        <a href="https://github.com/johnrengelman/grails-spring-batch">github.com/johnrengelman/grails-spring-batch</a>
-        <br>
-    </p>
-
-    <p>
-        <br>
-    </p>
-
-    <p>Plugin Page</p>
-
-    <p>
-        <a href="http://grails.org/plugin/spring-batch">grails.org/plugin/spring-batch</a>
-        <br>
-    </p>
+    <section> 
+        <h1>Grails Spring Batch</h1>
+    </section>
+    <section>
+        <p>Current Plugin Version</p>
+        <p>
+            1.0.RC2
+        </p>
+        <p>
+            <br>
+        </p>
+        <p>Current Spring Batch Version</p>
+        <p>
+            2.1.8.RELEASE
+        </p>
+    </section>
+    <section>
+        <p>Source</p>
+        <p>
+            <a href="https://github.com/johnrengelman/grails-spring-batch">github.com/johnrengelman/grails-spring-batch</a>
+            <br>
+        </p>
+        <p>
+            <br>
+        </p>
+        <p>Plugin Page</p>
+        <p>
+            <a href="http://grails.org/plugin/spring-batch">grails.org/plugin/spring-batch</a>
+            <br>
+        </p>
+    </section>
 </section>
 <section>
     <h2>Features</h2>
@@ -370,6 +378,162 @@ beans {
             <br>
         </div>
     </section>
+</section>
+
+<section>
+    <h2>Executing Jobs</h2>
+
+    <div style="text-align: left;">
+        <ul>
+            <li>Plugin automatically registers JobLauncher bean</li>
+            <li>Each Spring Batch Job is registered as a bean</li>
+            <li>Use dependency injection</li>
+        </ul>
+        <pre><code class="java">class FooService {
+
+    JobLauncher jobLauncher
+    def simpleJob
+
+    void executeSimpleJob() {
+        JobParametersBuilder builder = new JobParametersBuilder()
+        //Add any job properties here
+
+        JobExecution execution = 
+            jobLauncher.run(simpleJob, builder.toJobParameters())
+    }
+}
+</code></pre>
+    </div>
+</section>
+<section>
+    <h2>Provided Beans</h2>
+
+    <div style="text-align: left;">
+        <ul>
+            <li>jobRepository</li>
+            <li>jobLauncher</li>
+            <li>jobExplorer</li>
+            <li>jobRegistry</li>
+            <li>jobRegistryPostProcessor</li>
+            <li>jobOperator</li>
+            <li>jobService</li>
+        </ul>
+    </div>
+</section>
+
+<section>
+    <section>
+        <h2>Configuration Options</h2>
+    </section>
+    <section>
+        <h3>plugins.springBatch.dataSource</h3>
+        <div style="text-align: left;">
+            <ul>
+                <li>Specifies which Grails DataSource to use</li>
+                <li>Use the same names used in DataSource.groovy</li>
+                <li>String value</li>
+                <li>Defaults to 'dataSource'</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h3>plugins.springBatch.tablePrefix</h3>
+        <div style="text-align: left;">
+            <ul>
+                <li>Specifies the prefix to attach to Spring Batch tables</li>
+                <li>Prepends to tables names with a '_'</li>
+                <li>String value</li>
+                <li>Defaults to 'BATCH'</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h3>plugins.springBatch.loadTables</h3>
+        <div style="text-align: left;">
+            <ul>
+                <li>Indicates if plugin should attempt to load Spring Batch DDL on startup</li>
+                <li>Boolean value</li>
+                <li>Defaults to false</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h3>plugins.springBatch.database</h3>
+        <div style="text-align: left;">
+            <ul>
+                <li>Specifies what database is backing the Spring Batch dataSource</li>
+                <li>Must be one of
+                    <ul>
+                        <li>db2</li>
+                        <li>derby</li>
+                        <li>h2</li>
+                        <li>hsqldb</li>
+                        <li>mysql</li>
+                        <li>oracle10g</li>
+                        <li>postgresql</li>
+                        <li>sqlserver</li>
+                        <li>sybase</li>
+                    </ul>
+                </li>
+                <li>String value</li>
+                <li>No default provided</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h3>plugins.springBatch.jmx</h3>
+        <div style="text-align: left;">
+            <ul>
+                <li>enable [false] - enable/disable local JMX export</li>
+                <li>name ['jobOperator'] - specify the name JMX service</li>
+                <li>remote.enable [false] - enable/disable export to remote RMI registry</li>
+                <li>remote.rmi.port [1099] - specify port of remote RMI registry</li>
+                <li>remote.name ['springBatch'] - specify the remote RMI service name</li>
+            </ul>
+        </div>
+    </section>
+</section>
+
+<section>
+    <section>
+        <h2>User Interface</h2>
+    </section>
+    <section>
+        <h2>SpringBatchUiService</h2>
+
+        <div style="text-align: left;">
+        
+            Provides methods for reading data about Spring Batch jobs, steps, and executions.
+            Utilizes the Spring Batch JobService and maps data to a set of provided model
+            objects. UIs are modeled from Spring Batch Admin project.
+        </div>
+    </section>
+    <section>
+        <h2>SpringBatchUiService</h2>
+        <div style="text-align: left;">
+            <ul>
+                <li>Controllers
+                    <ul>
+                        <li>SpringBatchJobController</li>
+                        <li>SpringBatchJobInstanceController</li>
+                        <li>SpringBatchJobExecutionController</li>
+                        <li>SpringBatchStepExecutionController</li>
+                    </ul>
+                </li>
+                <li>Models
+                    <ul>
+                        <li>JobModel</li>
+                        <li>JobInstanceModel</li>
+                        <li>JobExecutionModel</li>
+                        <li>StepExecutionModel</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </section>
+</section>
+<section>
+    <h2>Grails Spring Batch In Action</h2>
 </section>
 </div>
 
