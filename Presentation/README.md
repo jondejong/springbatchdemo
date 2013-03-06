@@ -1,3 +1,8 @@
+This is the slide show for the Spring Batch 2.x presentation by Jon DeJong and John Engelman. To view it, simply open index.html. 
+
+Below is the original README from the reveal.js project:
+
+
 # reveal.js [![Build Status](https://travis-ci.org/hakimel/reveal.js.png?branch=master)](https://travis-ci.org/hakimel/reveal.js)
 
 A framework for easily creating beautiful presentations using HTML. [Check out the live demo](http://lab.hakim.se/reveal-js/).
