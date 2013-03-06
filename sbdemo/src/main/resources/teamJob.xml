@@ -23,8 +23,6 @@
         <constructor-arg value="${sbdemo.data.root}${sbdemo.team.job.data.file}"/>
     </bean>
 
-    <bean id="gameItemProcessor" class="com.objectpartners.sbdemo.gamejob.step1.GameItemProcessor"/>
-
     <bean id="teamWriter" class="com.objectpartners.sbdemo.teamjob.TeamWriter">
         <property name="sbdemoService" ref="sbdemoService"/>
     </bean>
